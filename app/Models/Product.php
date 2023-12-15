@@ -22,4 +22,9 @@ class Product extends BaseModel
         'image',
         'description',
     ];
+
+    protected $dates = [
+        'created_at',
+        'updated_at',
+    ];
 }

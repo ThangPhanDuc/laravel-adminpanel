@@ -66,8 +66,7 @@ class ProductsRepository extends BaseRepository
         $order = isset($options['order']) && in_array($options['order'], ['asc', 'desc']) ? $options['order'] : 'desc';
         $query = $this->query()
             ->with([
-                'owner',
-                'updater',
+                'category',
             ])
             ->orderBy($orderBy, $order);
 
@@ -106,25 +105,28 @@ class ProductsRepository extends BaseRepository
      */
     public function create(array $input)
     {
+        try {
+            return DB::transaction(function () use ($input) {
+                $input['name'] = $input['name'];
+                $input['code'] = $input['code'];
+                $input['unit_price'] = floatval($input['unit_price']);
+                $input['discount'] = floatval($input['discount']);
+                $input['final_price'] = floatval($input['final_price']);
+                $input['category_id'] = $input['category_id'];
+                $input['description'] = $input['description'];
+                $input = $this->uploadImage($input);
 
-        return DB::transaction(function () use ($input) {
-            $input['name'] = $input['name'];
-            $input['code'] = $input['code'];
-            $input['unit_price'] = floatval($input['unit_price']);
-            $input['discount'] = floatval($input['discount']);
-            $input['final_price'] = floatval($input['final_price']);
-            $input['category_id'] = $input['category_id'];
-            $input['description'] = $input['description'];
-            $input = $this->uploadImage($input);
+                if ($product = Product::create($input)) {
+                    event(new ProductCreated($product));
 
-            if ($product = Product::create($input)) {
-                event(new ProductCreated($product));
+                    return $product;
+                }
 
-                return $product;
-            }
-
-            throw new GeneralException(__('exceptions.backend.products.create_error'));
-        });
+                throw new GeneralException(__('exceptions.backend.products.create_error'));
+            });
+        } catch (\Exception $e) {
+            throw new GeneralException(__('exceptions.backend.products.create_error'), $e->getCode(), $e);
+        }
     }
 
     /**
@@ -133,22 +135,26 @@ class ProductsRepository extends BaseRepository
      */
     public function update(Product $product, array $input)
     {
-        // Uploading Image
-        if (array_key_exists('image', $input)) {
-            $this->deleteOldFile($product);
-            $input = $this->uploadImage($input);
-        }
-
-        return DB::transaction(function () use ($product, $input) {
-            if ($product->update($input)) {
-
-                event(new ProductUpdated($product));
-
-                return $product->fresh();
+        try {
+            // Uploading Image
+            if (array_key_exists('image', $input)) {
+                $this->deleteOldFile($product);
+                $input = $this->uploadImage($input);
             }
 
-            throw new GeneralException(__('exceptions.backend.products.update_error'));
-        });
+            return DB::transaction(function () use ($product, $input) {
+                if ($product->update($input)) {
+
+                    event(new ProductUpdated($product));
+
+                    return $product->fresh();
+                }
+
+                throw new GeneralException(__('exceptions.backend.products.update_error'));
+            });
+        } catch (\Exception $e) {
+            throw new GeneralException(__('exceptions.backend.products.update_error'), $e->getCode(), $e);
+        }
     }
 
     /**
@@ -160,18 +166,22 @@ class ProductsRepository extends BaseRepository
      */
     public function delete(Product $product)
     {
-        DB::transaction(function () use ($product) {
-            if ($product->delete()) {
-                // Deleting Image
-                $this->deleteOldFile($product);
+        try {
+            DB::transaction(function () use ($product) {
+                if ($product->delete()) {
+                    // Deleting Image
+                    $this->deleteOldFile($product);
 
-                event(new ProductDeleted($product));
+                    event(new ProductDeleted($product));
 
-                return true;
-            }
+                    return true;
+                }
 
-            throw new GeneralException(__('exceptions.backend.products.delete_error'));
-        });
+                throw new GeneralException(__('exceptions.backend.products.delete_error'));
+            });
+        } catch (\Exception $e) {
+            throw new GeneralException(__('exceptions.backend.products.delete_error'), $e->getCode(), $e);
+        }
     }
 
     /**

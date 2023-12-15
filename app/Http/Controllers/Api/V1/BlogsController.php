@@ -60,7 +60,7 @@ class BlogsController extends APIController
     public function index(ManageBlogsRequest $request)
     {
         $collection = $this->repository->retrieveList($request->all());
-
+     
         return BlogsResource::collection($collection);
     }
 
