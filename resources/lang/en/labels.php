@@ -217,6 +217,7 @@ return [
             'products' => [
                 'all' => 'All Products',
                 'active' => 'Product List',
+                'view' => 'VIew Product',
                 'create' => 'Create Product',
                 'deactivated' => 'Deactivated Products',
                 'deleted' => 'Deleted Product',

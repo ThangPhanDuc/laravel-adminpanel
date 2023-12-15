@@ -36,7 +36,6 @@ class ProductsController extends Controller
     {
         return new ViewResponse('backend.products.index');
     }
-
     /**
      * Show the form for creating a new resource.
      *
@@ -57,22 +56,25 @@ class ProductsController extends Controller
      */
     public function store(StoreProductsRequest $request)
     {
-       
+
         $this->repository->create($request->except(['_token', '_method']));
 
         return new RedirectResponse(route('admin.products.index'), ['flash_success' => __('alerts.backend.products.created')]);
     }
+    public function show(ManageProductsRequest $request, Product $product)
+    {
+      
+        $product1 =  $this->repository->show($product);
 
+        return new ViewResponse('backend.products.show', ['product' => $product]);
+    }
     /**
      * Display the specified resource.
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
-    {
-        //
-    }
+
 
     /**
      * Show the form for editing the specified resource.
@@ -96,7 +98,7 @@ class ProductsController extends Controller
      */
     public function update(Product $product, UpdateProductsRequest $request)
     {
-        
+
         $this->repository->update($product, $request->except(['_token', '_method']));
 
         return new RedirectResponse(route('admin.products.index'), ['flash_success' => __('alerts.backend.products.updated')]);

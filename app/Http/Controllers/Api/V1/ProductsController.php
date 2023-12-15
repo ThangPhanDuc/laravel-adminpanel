@@ -32,6 +32,7 @@ class ProductsController extends APIController
 
     public function show(ManageProductsRequest $request, Product $product)
     {
+
         return new ProductsResource($product);
     }
 
@@ -45,6 +46,7 @@ class ProductsController extends APIController
 
     public function update(UpdateProductsRequest $request, Product $product)
     {
+       
         return new ProductsResource($this->repository->update($product, $request->validated()));
     }
 

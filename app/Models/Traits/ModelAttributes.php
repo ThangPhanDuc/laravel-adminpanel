@@ -32,4 +32,15 @@ trait ModelAttributes
                 </a>';
         }
     }
+
+    public function getShowButtonAttribute($permission, $route)
+    {
+        if (access()->allow($permission)) {
+            return '<a href="'.route($route, $this).'" data-toggle="tooltip" data-placement="top" title="'.trans('buttons.general.crud.view').'" class="btn btn-success btn-sm">
+                         <i class="fa fa-eye"></i>
+                    </a>';
+        }
+    }
+
+    
 }

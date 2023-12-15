@@ -73,6 +73,7 @@ return [
 
         'products' => [
             // 'already_exists' => 'That Product already exists. Please choose a different name.',
+            'show_error' => 'There was a problem showing this Product. Please try again.',
             'create_error' => 'There was a problem creating this Product. Please try again.',
             'delete_error' => 'There was a problem deleting this Product. Please try again.',
             'update_error' => 'There was a problem updating this Product. Please try again.',

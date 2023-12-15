@@ -96,6 +96,17 @@ class ProductsRepository extends BaseRepository
             ]);
     }
 
+    public function show(Product $product)
+    {
+        try {
+            return $this->query()
+                ->with('category')
+                ->findOrFail($product->id);
+        } catch (\Exception $e) {
+            throw new GeneralException(__('exceptions.backend.products.show_error'), $e->getCode(), $e);
+        }
+    }
+
     /**
      * @param array $input
      *
