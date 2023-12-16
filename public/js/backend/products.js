@@ -6,7 +6,7 @@
             selectors: {
                 products_table: $('#products-table'),
             },
-            init: function() {
+            init: function () {
                 this.selectors.products_table.dataTable({
                     processing: false,
                     serverSide: true,
@@ -16,45 +16,52 @@
                     },
 
                     columns: [{
-                            data: 'name',
-                            name: 'products.name'
-                        },
-                        {
-                            data: 'code',
-                            name: 'products.code'
-                        },
-                        {
-                            data: 'unit_price',
-                            name: 'products.unit_price'
-                        },
-                        {
-                            data: 'discount',
-                            name: 'products.discount'
-                        },
-                        {
-                            data: 'final_price',
-                            name: 'products.final_price'
-                        },
-                        {
-                            data: 'category_name',
-                            name: 'products.category_id'
-                        },
-                        {
-                            data: 'created_at',
-                            name: 'products.created_at'
-                        },
-                        {
-                            data: 'actions',
-                            name: 'actions',
-                            searchable: false,
-                            sortable: false
-                        }
+                        data: 'name',
+                        name: 'products.name',
+                        searchable: true
+                    },
+                    {
+                        data: 'code',
+                        name: 'products.code',
+                        searchable: true,
+                    },
+                    {
+                        data: 'unit_price',
+                        name: 'products.unit_price',
+                        searchable: false,
+                    },
+                    {
+                        data: 'discount',1
+                        name: 'products.discount',
+                        searchable: false,
+                    },
+                    {
+                        data: 'final_price',
+                        name: 'products.final_price',
+                        searchable: false,
+                    },
+                    {
+                        data: 'category_name',
+                        name: 'products.category_id',
+                        searchable: false,
+                    },
+                    {
+                        data: 'created_at',
+                        name: 'products.created_at', 
+                        searchable: false,
+                    },
+                    {
+                        data: 'actions',
+                        name: 'actions',
+                        searchable: false,
+                        sortable: false
+                    }
                     ],
                     order: [
                         [5, "asc"]
                     ],
                     searchDelay: 500,
-                    "createdRow": function(row, data, dataIndex) {
+                    "createdRow": function (row, data, dataIndex) {
                         FTX.Utils.dtAnchorToForm(row);
                     }
                 });
@@ -69,12 +76,12 @@
                 publish_datetime: jQuery("#publish_datetime"),
             },
 
-            init: function(locale) {
+            init: function (locale) {
                 this.addHandlers(locale);
                 FTX.tinyMCE.init(locale);
             },
 
-            addHandlers: function(locale) {
+            addHandlers: function (locale) {
 
                 this.selectors.tags.select2({
                     tags: true,
