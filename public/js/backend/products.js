@@ -31,7 +31,7 @@
                         searchable: false,
                     },
                     {
-                        data: 'discount',1
+                        data: 'discount',
                         name: 'products.discount',
                         searchable: false,
                     },

@@ -214,6 +214,32 @@ return [
                 ],
             ],
 
+            'tickets' => [
+                'all' => 'All Tickets',
+                'active' => 'Ticket List',
+                'create' => 'Create Ticket',
+                'deactivated' => 'Deactivated Tickets',
+                'deleted' => 'Deleted Ticket',
+                'edit' => 'Edit Ticket',
+                'management' => 'Ticket Management',
+
+                'table' => [
+                    'created' => 'Created',
+                    'id' => 'ID',
+                    'last_updated' => 'Last Updated',
+                    'content' => 'Ticket Content',
+                    'type' => 'Ticket Type',
+                    'expected' => 'Expected',
+                    'status' => 'Status',
+                    'user' => 'User',
+                    'link' => 'Link',
+                    'response'=>'Response',
+                    'createdat' => 'Created At',
+                    'total' => 'ticket total|tickets total',
+                ],
+            ],
+
+
             'products' => [
                 'all' => 'All Products',
                 'active' => 'Product List',
@@ -223,7 +249,7 @@ return [
                 'deleted' => 'Deleted Product',
                 'edit' => 'Edit Product',
                 'management' => 'Product Management',
-            
+
                 'table' => [
                     'created' => 'Created',
                     'id' => 'ID',
@@ -248,7 +274,7 @@ return [
                     'total' => 'product total|products total',
                 ],
             ],
-            
+
             'product-category' => [
                 'all' => 'All Product Categories',
                 'active' => 'Product Category List',
@@ -257,7 +283,7 @@ return [
                 'deleted' => 'Deleted Product Category',
                 'edit' => 'Edit Product Category',
                 'management' => 'Product Categories',
-            
+
                 'table' => [
                     'created' => 'Created',
                     'id' => 'ID',
@@ -269,7 +295,7 @@ return [
                     'createdat' => 'Created At',
                     'total' => 'product categories total|product categories total',
                 ],
-            ],            
+            ],
 
             'pages' => [
                 'all' => 'All Pages',

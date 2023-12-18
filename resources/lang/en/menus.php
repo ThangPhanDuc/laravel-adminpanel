@@ -114,6 +114,16 @@ return [
                 'view' => 'View Product Category',
             ],
             
+            'tickets' => [
+                'all' => 'All Tickets',
+                'active' => 'Active Tickets',
+                'create' => 'Create Ticket',
+                'deactivated' => 'Deactivated Tickets',
+                'deleted' => 'Deleted Tickets',
+                'edit' => 'Edit Ticket',
+                'main' => 'Tickets',
+                'view' => 'View Ticket',
+            ],
 
             'faqs' => [
                 'all' => 'All Faqs',
@@ -151,6 +161,7 @@ return [
             'system' => 'System',
             'blogs' => 'Blog Management',
             'products' => 'Product Management',
+            'tickets' => 'TIcket Management',
             'pages' => 'Pages Management',
             'faqs' => 'Faq Management',
             'email-templates' => 'Email Templates',
