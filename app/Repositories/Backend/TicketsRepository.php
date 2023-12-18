@@ -12,6 +12,9 @@ use Carbon\Carbon;
 use DB;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
+use App\Events\Backend\Tickets\TicketCreated;
+use App\Events\Backend\Tickets\TicketDeleted;
+use App\Events\Backend\Tickets\TicketUpdated;
 
 class  TicketsRepository extends BaseRepository
 {
@@ -31,6 +34,7 @@ class  TicketsRepository extends BaseRepository
         'id',
         'content',
         'type',
+        'flag',
         'expected',
         'status',
         'link',
@@ -70,19 +74,108 @@ class  TicketsRepository extends BaseRepository
     {
         return $this->query()
             ->leftjoin('users', 'users.id', '=', 'tickets.user_id')
+            ->leftjoin('ticket_flags', 'ticket_flags.id', '=', 'tickets.ticket_flag_id')
             ->select([
                 'tickets.id',
                 'tickets.content',
                 'tickets.type',
-                'tickets.expected',
+                'tickets.ticket_flag_id',
                 'tickets.status',
                 'tickets.link',
                 'tickets.response',
                 'tickets.user_id',
                 'tickets.created_at',
                 'users.first_name as user_name',
+                'ticket_flags.name as flag_name',
             ]);
     }
 
-   
+    public function create(array $input)
+    {
+
+        try {
+            return DB::transaction(function () use ($input) {
+                $input['content'] = $input['content'];
+                $input['type'] = $input['type'];
+                $input['ticket_flag_id'] = $input['ticket_flag_id'];
+                $input['expected'] = $input['expected'];
+                $input['user_id'] = auth()->user()->id;
+                $input['link'] = $input['link'];
+                $input = $this->uploadImage($input);
+
+                if ($ticket = Ticket::create($input)) {
+
+                    event(new TicketCreated($ticket));
+                    return $ticket;
+                }
+
+                throw new GeneralException(__('exceptions.backend.tickets.create_error'));
+            });
+        } catch (\Exception $e) {
+            throw new GeneralException(__('exceptions.backend.tickets.create_error'), $e->getCode(), $e);
+        }
+    }
+
+    public function update(Ticket $ticket, array $input)
+    {
+        try {
+            // Uploading Image
+            if (array_key_exists('image_path', $input)) {
+                $this->deleteOldFile($ticket);
+                $input = $this->uploadImage($input);
+            }
+
+            return DB::transaction(function () use ($ticket, $input) {
+                if ($ticket->update($input)) {
+
+                    event(new TicketUpdated());
+
+                    return $ticket->fresh();
+                }
+
+                throw new GeneralException(__('exceptions.backend.tickets.update_error'));
+            });
+        } catch (\Exception $e) {
+            throw new GeneralException(__('exceptions.backend.tickets.update_error'), $e->getCode(), $e);
+        }
+    }
+    public function delete(Ticket $ticket)
+    {
+        try {
+            DB::transaction(function () use ($ticket) {
+                if ($ticket->delete()) {
+                    //Delete OldFile
+                    $this->deleteOldFile($ticket);
+
+                    event(new TicketDeleted());
+                    return true;
+                }
+
+                throw new GeneralException(__('exceptions.backend.tickets.delete_error'));
+            });
+        } catch (\Exception $e) {
+            throw new GeneralException(__('exceptions.backend.tickets.update_error'), $e->getCode(), $e);
+        }
+    }
+
+    public function uploadImage($input)
+    {
+        if (isset($input['image_path']) && !empty($input['image_path'])) {
+            $avatar = $input['image_path'];
+            $fileName = time() . $avatar->getClientOriginalName();
+
+            $this->storage->put($this->upload_path . $fileName, file_get_contents($avatar->getRealPath()));
+
+            $input = array_merge($input, ['image_path' => $fileName]);
+        }
+
+        return $input;
+    }
+
+    public function deleteOldFile($model)
+    {
+        $fileName = $model->image_path;
+
+        return $this->storage->delete($this->upload_path . $fileName);
+    }
 }

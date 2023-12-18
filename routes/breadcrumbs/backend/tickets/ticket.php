@@ -13,3 +13,8 @@ Breadcrumbs::for('admin.tickets.edit', function ($trail, $id) {
     $trail->parent('admin.tickets.index');
     $trail->push(__('labels.backend.access.tickets.management'), route('admin.tickets.edit', $id));
 });
+
+Breadcrumbs::for('admin.tickets.show', function ($trail, $id) {
+    $trail->parent('admin.tickets.index');
+    $trail->push(__('labels.backend.access.tickets.management'), route('admin.tickets.show', $id));
+});

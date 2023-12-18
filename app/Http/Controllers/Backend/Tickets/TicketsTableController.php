@@ -28,8 +28,8 @@ class TicketsTableController extends Controller
             ->addColumn('type', function ($tickets) {
                 return $tickets->type;
             }) 
-            ->addColumn('expected', function ($tickets) {
-                return $tickets->expected;
+            ->addColumn('ticket_flag_id', function ($tickets) {
+                return $tickets->flag_name;
             })
             ->addColumn('status', function ($tickets) {
                 return $tickets->status;
@@ -45,7 +45,10 @@ class TicketsTableController extends Controller
             })
             ->addColumn('created_at', function ($tickets) {
                 return $tickets->created_at->toDateString();
-            })         
+            })      
+            ->addColumn('actions', function ($tickets) {
+                return $tickets->action_buttons;
+            })   
             ->make(true);
     }
 }

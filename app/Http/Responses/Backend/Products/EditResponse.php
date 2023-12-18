@@ -18,7 +18,6 @@ class EditResponse implements Responsable
 
     public function toResponse($request)
     {
-
         return view('backend.products.edit')->with([
             'product' => $this->product,
             'productCategories' => $this->productCategories,

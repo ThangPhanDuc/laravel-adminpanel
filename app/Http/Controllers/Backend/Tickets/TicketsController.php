@@ -8,6 +8,17 @@ use App\Repositories\Backend\TicketsRepository;
 use Illuminate\Support\Facades\View;
 use App\Http\Responses\ViewResponse;
 use App\Http\Requests\Backend\Tickets\ManageTicketsRequest;
+use App\Http\Requests\Backend\Tickets\CreateTicketsRequest;
+use App\Http\Requests\Backend\Tickets\UpdateTicketsRequest;
+use App\Http\Requests\Backend\Tickets\DeleteTicketsRequest;
+use App\Http\Requests\Backend\Tickets\EditTicketsRequest;
+use App\Http\Requests\Backend\Tickets\StoreTicketsRequest;
+use App\Models\Ticket;
+use App\Models\TicketFlag;
+use App\Http\Responses\RedirectResponse;
+use App\Http\Responses\Backend\Tickets\EditResponse;
+
+
 class TicketsController extends Controller
 {
     /**
@@ -23,7 +34,7 @@ class TicketsController extends Controller
     }
     public function index(ManageTicketsRequest $request)
     {
-        return new ViewResponse('backend.tickets.index'); 
+        return new ViewResponse('backend.tickets.index');
     }
 
     /**
@@ -31,9 +42,11 @@ class TicketsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(CreateTicketsRequest $request)
     {
-        //
+        $ticketFlags = TicketFlag::getSelectData();
+
+        return new ViewResponse('backend.tickets.create', ['ticketFlags' => $ticketFlags]);
     }
 
     /**
@@ -42,9 +55,12 @@ class TicketsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreTicketsRequest $request)
     {
-        //
+
+        $this->repository->create($request->except(['_token', '_method']));
+        dd(1);
+        return new RedirectResponse(route('admin.tickets.index'), ['flash_success' => __('alerts.backend.tickets.created')]);
     }
 
     /**
@@ -53,9 +69,10 @@ class TicketsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(ManageTicketsRequest $request, Ticket $ticket)
     {
-        //
+    
+        return new ViewResponse('backend.tickets.show', ['ticket' => $ticket]);
     }
 
     /**
@@ -64,9 +81,11 @@ class TicketsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Ticket $ticket, StoreTicketsRequest $request)
     {
-        //
+        $ticketFlags = TicketFlag::getSelectData();
+
+        return new EditResponse($ticket, $ticketFlags);
     }
 
     /**
@@ -76,9 +95,11 @@ class TicketsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Ticket $ticket, UpdateTicketsRequest $request)
     {
-        //
+        $this->repository->update($ticket, $request->except(['_token', '_method']));
+
+        return new RedirectResponse(route('admin.tickets.index'), ['flash_success' => __('alerts.backend.tickets.updated')]);
     }
 
     /**
@@ -87,8 +108,10 @@ class TicketsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Ticket $ticket, DeleteTicketsRequest $request)
     {
-        //
+        $this->repository->delete($ticket);
+
+        return new RedirectResponse(route('admin.tickets.index'), ['flash_success' => __('alerts.backend.tickets.deleted')]);
     }
 }

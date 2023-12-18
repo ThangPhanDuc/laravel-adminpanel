@@ -222,6 +222,7 @@ return [
                 'deleted' => 'Deleted Ticket',
                 'edit' => 'Edit Ticket',
                 'management' => 'Ticket Management',
+                'view' => 'View Ticket',
 
                 'table' => [
                     'created' => 'Created',
@@ -229,13 +230,16 @@ return [
                     'last_updated' => 'Last Updated',
                     'content' => 'Ticket Content',
                     'type' => 'Ticket Type',
+                    'flag' => 'Ticket Flag',
                     'expected' => 'Expected',
                     'status' => 'Status',
                     'user' => 'User',
                     'link' => 'Link',
-                    'response'=>'Response',
+                    'response' => 'Response',
                     'createdat' => 'Created At',
+                    'updatedat' => 'Updated At',
                     'total' => 'ticket total|tickets total',
+                    'image' => 'Image',
                 ],
             ],
 
@@ -243,7 +247,7 @@ return [
             'products' => [
                 'all' => 'All Products',
                 'active' => 'Product List',
-                'view' => 'VIew Product',
+                'view' => 'View Product',
                 'create' => 'Create Product',
                 'deactivated' => 'Deactivated Products',
                 'deleted' => 'Deleted Product',

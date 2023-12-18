@@ -4,7 +4,7 @@ namespace App\Http\Requests\Backend\Tickets;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class ManageTicketsRequest extends FormRequest
+class EditTicketsRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -13,7 +13,7 @@ class ManageTicketsRequest extends FormRequest
      */
     public function authorize()
     {
-        return access()->allow('view-ticket');
+        return false;
     }
 
     /**

@@ -64,8 +64,6 @@ class ProductsController extends Controller
     public function show(ManageProductsRequest $request, Product $product)
     {
       
-        $product1 =  $this->repository->show($product);
-
         return new ViewResponse('backend.products.show', ['product' => $product]);
     }
     /**

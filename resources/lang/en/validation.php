@@ -230,6 +230,26 @@ return [
                     'status' => 'Status',
                 ],
 
+                'tickets' => [
+                    'content' => 'Ticket Content',
+                    'type' => 'Type',
+                    'flag' => 'Flag',
+                    'expected' => 'Expected',
+                    'user_id' => 'User',
+                    'status' => 'Status',
+                    'link' => 'Link',
+                    'image_path' => 'Image Path',
+                    'response' => 'Response',
+                    'created_at' => 'Created At',
+                    'updated_at' => 'Updated At',
+                ],
+
+                'ticket_flags' => [
+                    'name' => 'Name',
+                    'created_at' => 'Created At',
+                    'updated_at' => 'Updated At',
+                ],                
+
                 'products' => [
                     'name' => 'Product Name',
                     'code' => 'Product Code',

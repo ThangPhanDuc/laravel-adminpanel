@@ -11,17 +11,20 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 use App\Models\Auth\User;
 
-class Ticket extends Model
+class Ticket extends BaseModel
 {
     use TicketAttributes, ModelAttributes, TicketRelationships;
     protected $fillable = [
         'content',
         'type',
+        'ticket_flag_id',
         'expected',
         'user_id',
         'status',
         'link',
         'image_path',
         'response',
+        'created_by',
+        'updated_by',
     ];
 }
