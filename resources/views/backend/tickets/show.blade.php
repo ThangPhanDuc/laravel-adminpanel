@@ -55,7 +55,9 @@
                                 </tr>
                                 <tr>
                                     <th>{{ trans('labels.backend.access.tickets.table.image') }}</th>
-                                    <td><img src="{{ asset('storage/img/ticket/'.$ticket->image_path) }}" alt={{ $ticket->image_path }} height="80" width="80" class="img-thumbnail"></td>
+                                    <td><img src="{{ asset('storage/img/ticket/' . $ticket->image_path) }}"
+                                            alt={{ $ticket->image_path }} height="80" width="80"
+                                            class="img-thumbnail"></td>
                                 </tr>
                                 <tr>
                                     <th>{{ trans('labels.backend.access.tickets.table.response') }}</th>
@@ -80,4 +82,5 @@
         <!--card-body-->
     </div>
     <!--card-->
+    @include('backend.tickets.chat', ['id' => $ticket->id])
 @endsection
