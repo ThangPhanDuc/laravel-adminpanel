@@ -11,15 +11,15 @@ use Yajra\DataTables\Facades\DataTables;
 
 class TicketsTableController extends Controller
 {
-    protected $repository;
+    protected $repository;  
 
-    public function __construct(TicketsRepository $repository)  
+    public function __construct(TicketsRepository $repository)
     {
-        $this->repository = $repository;  
+        $this->repository = $repository;
     }
 
     public function __invoke(ManageTicketsRequest $request)
-    {  
+    {
         return Datatables::of($this->repository->getForDataTable())
             ->escapeColumns(['content']) 
             ->addColumn('content', function ($tickets) {
@@ -27,7 +27,7 @@ class TicketsTableController extends Controller
             })
             ->addColumn('type', function ($tickets) {
                 return $tickets->type;
-            }) 
+            })
             ->addColumn('ticket_flag_id', function ($tickets) {
                 return $tickets->flag_name;
             })
@@ -45,10 +45,10 @@ class TicketsTableController extends Controller
             })
             ->addColumn('created_at', function ($tickets) {
                 return $tickets->created_at->toDateString();
-            })      
+            })
             ->addColumn('actions', function ($tickets) {
                 return $tickets->action_buttons;
-            })   
+            })
             ->make(true);
     }
 }

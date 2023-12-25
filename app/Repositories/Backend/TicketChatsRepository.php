@@ -39,14 +39,19 @@ class TicketChatsRepository extends BaseRepository
         $content = $request->input('content');
         $user = auth()->user();
 
-        $chat = $this->query()->create([
-            'ticket_id' => $ticket->id,
-            'user_id' => $user->id,
-            'content' => $content,
-        ]);
+        // $chat = $this->query()->create([
+        //     'ticket_id' => $ticket->id,
+        //     'user_id' => $user->id,
+        //     'content' => $content,
+        // ]);
 
-        event(new TicketChatCreated());
+        $chat= TicketChat::find(1);
         $chat->load('user');
+        event(new TicketChatCreated($chat));
+        
+        
         return $chat;
+
+
     }
 }

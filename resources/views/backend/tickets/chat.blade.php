@@ -65,7 +65,7 @@
                     </div>
                 </div>
                 <img src="https://www.gravatar.com/avatar/7fbaf4fe3778cc913f8bfd8deb7578f4.jpg?s=80&d=mm&r=g" alt="avatar" class="rounded-circle d-flex align-self-start ms-3 shadow-1-strong" width="60">
-            `;
+                      `;
                 } else {
                     contentHtml = `
                 <img src="https://www.gravatar.com/avatar/7fbaf4fe3778cc913f8bfd8deb7578f4.jpg?s=80&d=mm&r=g}" alt="avatar" class="rounded-circle d-flex align-self-start me-3 shadow-1-strong" width="60">
@@ -78,14 +78,14 @@
                         <p class="mb-0">${chat.content}</p>
                     </div>
                 </div>
-            `;
+                    `;
                 }
 
                 // Thêm class "float-end" nếu là user hiện tại
                 if (isCurrentUser) {
                     listItem.classList.add(
                         // 'float-right'
-                        );
+                    );
                 }
 
                 listItem.innerHTML = contentHtml;
@@ -146,5 +146,12 @@
             list.appendChild(listItem);
             list.scrollTop = list.scrollHeight;
         }
+
+        Echo.channel('ticket-chat.' + 1)
+            .listen('TicketChatCreated', (event) => {
+                // Xử lý sự kiện khi có tin nhắn mới được tạo
+                console.log(event.chat);
+                // displayNewMessage(event.chat);
+            });
     });
 </script>

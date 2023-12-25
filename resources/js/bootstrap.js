@@ -14,6 +14,9 @@ import 'select2';
 import moment from 'moment';
 import 'moment-timezone';
 import 'eonasdan-bootstrap-datetimepicker-bootstrap4beta';
+
+import Echo from 'laravel-echo';
+import Pusher from 'pusher-js';
 // require('tinymce');
 
 /**
@@ -52,3 +55,13 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 //     cluster: process.env.MIX_PUSHER_APP_CLUSTER,
 //     forceTLS: true
 // });
+
+
+window.Pusher = Pusher;
+
+window.Echo = new Echo({
+    broadcaster: 'pusher',
+    key: process.env.MIX_PUSHER_APP_KEY,
+    cluster: process.env.MIX_PUSHER_APP_CLUSTER,
+    encrypted: true,
+});

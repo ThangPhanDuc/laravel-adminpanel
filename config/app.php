@@ -203,6 +203,8 @@ return [
 
         // Application Service Providers...
         Collective\Html\HtmlServiceProvider::class,
+
+        App\Providers\BroadcastServiceProvider::class,
     ],
 
     /*

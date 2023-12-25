@@ -13,7 +13,7 @@ use App\Models\Auth\User;
 
 class Ticket extends BaseModel
 {
-    use TicketAttributes, ModelAttributes, TicketRelationships;
+    use TicketAttributes, ModelAttributes, TicketRelationships,SoftDeletes;
     protected $fillable = [
         'content',
         'type',

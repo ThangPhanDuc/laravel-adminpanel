@@ -119,7 +119,7 @@
                 }
             },
 
-            
+
         }
 
         FTX.Utils.documentReady(function() {

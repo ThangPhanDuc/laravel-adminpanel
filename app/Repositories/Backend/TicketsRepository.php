@@ -54,7 +54,9 @@ class  TicketsRepository extends BaseRepository
     public function retrieveList(array $options = [])
     {
         $perPage = isset($options['per_page']) ? (int) $options['per_page'] : 20;
-        $orderBy = isset($options['order_by']) && in_array($options['order_by'], $this->sortable) ? $options['order_by'] : 'created_at';
+        $orderBy = isset($options['order_by']) && in_array($options['order_by'], $this->sortable)
+            ? $options['order_by']
+            : 'created_at';
         $order = isset($options['order']) && in_array($options['order'], ['asc', 'desc']) ? $options['order'] : 'desc';
         $query = $this->query()
             ->with([
@@ -95,12 +97,7 @@ class  TicketsRepository extends BaseRepository
 
         try {
             return DB::transaction(function () use ($input) {
-                $input['content'] = $input['content'];
-                $input['type'] = $input['type'];
-                $input['ticket_flag_id'] = $input['ticket_flag_id'];
-                $input['expected'] = $input['expected'];
                 $input['user_id'] = auth()->user()->id;
-                $input['link'] = $input['link'];
                 $input = $this->uploadImage($input);
 
                 if ($ticket = Ticket::create($input)) {

@@ -19,9 +19,10 @@ class TicketChatCreated
      *
      * @return void
      */
-    public function __construct()
+    public $chat;
+    public function __construct($chat)
     {
-        //
+       $this->chat = $chat; 
     }
 
     /**
@@ -31,6 +32,9 @@ class TicketChatCreated
      */
     public function broadcastOn()
     {
-        return new PrivateChannel('channel-name');
+        // return new PrivateChannel('channel-name');
+        // return new PrivateChannel('ticket-chat.' . $this->chat->ticket_id);
+        // return new PrivateChannel('ticket-chat.1');
+        return new Channel('ticket-chat.' . $this->chat->ticket_id);
     }
 }
