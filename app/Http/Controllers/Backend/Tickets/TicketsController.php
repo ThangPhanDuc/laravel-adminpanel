@@ -59,7 +59,6 @@ class TicketsController extends Controller
     {
 
         $this->repository->create($request->except(['_token', '_method']));
-        dd(1);
         return new RedirectResponse(route('admin.tickets.index'), ['flash_success' => __('alerts.backend.tickets.created')]);
     }
 
