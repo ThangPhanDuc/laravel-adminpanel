@@ -229,6 +229,17 @@ return [
                     'meta_description' => 'Meta Description',
                     'status' => 'Status',
                 ],
+                
+                'employees' => [
+                    'full_name' => 'Full Name',
+                    'phone_number' => 'Phone Number',
+                    'position' => 'Position',
+                    'salary' => 'Salary',
+                    'created_at' => 'Created At',
+                    'updated_at' => 'Updated At',
+                    'deleted_at' => 'Deleted At',
+                ],
+                
 
                 'tickets' => [
                     'content' => 'Ticket Content',

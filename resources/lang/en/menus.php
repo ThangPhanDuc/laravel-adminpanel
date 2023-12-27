@@ -91,6 +91,18 @@ return [
                 'view' => 'View Blog Tag',
             ],
 
+            'employees' => [
+                'all' => 'All Employees',
+                'active' => 'Active Employees',
+                'create' => 'Create Employee',
+                'deactivated' => 'Deactivated Employees',
+                'deleted' => 'Deleted Employees',
+                'edit' => 'Edit Employee',
+                'main' => 'Employees',
+                'view' => 'View Employee',
+            ],
+            
+
             // products
             'products' => [
                 'all' => 'All Products',

@@ -214,6 +214,30 @@ return [
                 ],
             ],
 
+            'employees' => [
+                'all' => 'All Employees',
+                'active' => 'Active Employees',
+                'create' => 'Create Employee',
+                'deactivated' => 'Deactivated Employees',
+                'deleted' => 'Deleted Employee',
+                'edit' => 'Edit Employee',
+                'view' => 'View Employee',
+                'management' => 'Employee Management',
+            
+                'table' => [
+                    'created' => 'Created',
+                    'id' => 'ID',
+                    'last_updated' => 'Last Updated',
+                    'full_name' => 'Full Name',
+                    'phone_number' => 'Phone Number',
+                    'position' => 'Position',
+                    'salary' => 'Salary',
+                    'createdat' => 'Created At',
+                    'updatedat' => 'Updated At',
+                    'total' => 'employee total|employees total',
+                ],
+            ],            
+
             'tickets' => [
                 'all' => 'All Tickets',
                 'active' => 'Ticket List',
