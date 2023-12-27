@@ -29,7 +29,7 @@ class EmployeesController extends Controller
     public function __construct(EmployeesRepository $repository)
     {
         $this->repository = $repository;
-        // View::share('js', ['employees']);
+        View::share('js', ['employees']);
     }
     public function index(ManageEmployeesRequest $request)
     {

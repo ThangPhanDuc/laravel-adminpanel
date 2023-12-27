@@ -9,7 +9,7 @@
 @section('content')
     <div class="card">
         <div class="card-body">
-            <div class="row">
+            <div class="row"> 
                 <div class="col-sm-5">
                     <h4 class="card-title mb-0">
                         {{ __('labels.backend.access.employees.management') }} <small
@@ -49,75 +49,11 @@
     <!--card-->
 @endsection
 
-{{-- @section('pagescript')
+@section('pagescript')
 <script>
     FTX.Utils.documentReady(function() {
-        FTX.employees.list.init();
+        FTX.Employees.list.init();
     });
 </script>
-@stop --}}
-
-@section('pagescript')
-    <script>
-        FTX.Employees = {
-
-            list: {
-                selectors: {
-                    employees_table: $('#employees-table'),
-                },
-                init: function() {
-                    this.selectors.employees_table.dataTable({
-                        processing: true,
-                        serverSide: true,
-                        ajax: {
-                            url: this.selectors.employees_table.data('ajax_url'),
-                            type: 'post',
-                        },
-
-                        columns: [{
-                                data: 'full_name',
-                                name: 'employees.content',
-                            },
-                            {
-                                data: 'phone_number',
-                                name: 'employees.type',
-                            },
-                            {
-                                data: 'position',
-                                name: 'employees.position',
-                            },
-                            {
-                                data: 'salary',
-                                name: 'employees.salary',
-                            },
-                            {
-                                data: 'created_at',
-                                name: 'employees.created_at',
-                            },
-                            {
-                                data: 'actions',
-                                name: 'actions',
-                                searchable: false,
-                                sortable: false
-                            }
-
-                        ],
-                        order: [
-                            [3, "asc"]
-                        ],
-                        searchDelay: 500,
-                        "createdRow": function(row, data, dataIndex) {
-                            FTX.Utils.dtAnchorToForm(row);
-                        }
-                    });
-                }
-            },
-
-
-        }
-
-        FTX.Utils.documentReady(function() {
-            FTX.Employees.list.init();
-        });
-    </script>
 @stop
+

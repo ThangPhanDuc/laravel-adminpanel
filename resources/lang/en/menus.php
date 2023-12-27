@@ -172,6 +172,7 @@ return [
             'history' => 'History',
             'system' => 'System',
             'blogs' => 'Blog Management',
+            'employees' => 'Employee Management',
             'products' => 'Product Management',
             'tickets' => 'TIcket Management',
             'pages' => 'Pages Management',
