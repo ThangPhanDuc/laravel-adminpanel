@@ -18,7 +18,15 @@ class ProductsTableController extends Controller
 
     public function __invoke(ManageProductsRequest $request)
     {
-        return Datatables::of($this->repository->getForDataTable())
+
+        $query = $this->repository->getForDataTable();
+
+
+        if ($request->filled('from_date') && $request->filled('to_date')) {
+            $query->whereBetween('created_at', [$request->from_date . ' 00:00:00', $request->to_date . ' 23:59:59']);
+        }
+
+        return Datatables::of($query)
             ->escapeColumns(['name'])
             ->addColumn('name', function ($products) {
                 return $products->name;
@@ -39,11 +47,13 @@ class ProductsTableController extends Controller
                 return $products->category_id;
             })
             ->addColumn('created_at', function ($products) {
-                return $products->created_at->toDateString();
+                return $products->created_at->format('Y-m-d');
             })
             ->addColumn('actions', function ($products) {
                 return $products->action_buttons;
             })
             ->make(true);
+
+
     }
 }

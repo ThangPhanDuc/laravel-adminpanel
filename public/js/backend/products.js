@@ -5,8 +5,13 @@
         list: {
             selectors: {
                 products_table: $('#products-table'),
+                from_date: $('#from_date'),  
+                to_date: $('#to_date'),     
+                filter_btn: $('#filter'),
             },
+            dataTable: null,
             init: function () {
+                var self = this;
                 this.selectors.products_table.dataTable({
                     processing: false,
                     serverSide: true,
@@ -63,8 +68,25 @@
                     searchDelay: 500,
                     "createdRow": function (row, data, dataIndex) {
                         FTX.Utils.dtAnchorToForm(row);
+                    },
+
+                    initComplete: function () {
+                        self.selectors.filter_btn.on('click', function () {
+                            self.filterByDateRange();
+                        });
                     }
                 });
+            },
+
+            filterByDateRange: function () {
+              
+                var fromDate = this.selectors.from_date.val();
+                var toDate = this.selectors.to_date.val();
+                console.log(fromDate,toDate);
+                if (self.dataTable) {
+                    console.log("123");
+                    self.dataTable.column(5).search(fromDate + ' to ' + toDate).draw();
+                }
             }
         },
 
