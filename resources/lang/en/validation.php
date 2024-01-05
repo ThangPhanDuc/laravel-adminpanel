@@ -229,7 +229,18 @@ return [
                     'meta_description' => 'Meta Description',
                     'status' => 'Status',
                 ],
-                
+
+                'leaves' => [
+                    "user"=>"User Name",
+                    "type" => "Leave Type",
+                    "start_date" => "Start Date",
+                    "end_date" =>  "End Date",
+                    "reason" =>  "Reason",
+                    "status" =>  "Status",
+                ],
+
+
+
                 'employees' => [
                     'full_name' => 'Full Name',
                     'phone_number' => 'Phone Number',
@@ -239,7 +250,7 @@ return [
                     'updated_at' => 'Updated At',
                     'deleted_at' => 'Deleted At',
                 ],
-                
+
 
                 'tickets' => [
                     'content' => 'Ticket Content',
@@ -259,7 +270,7 @@ return [
                     'name' => 'Name',
                     'created_at' => 'Created At',
                     'updated_at' => 'Updated At',
-                ],                
+                ],
 
                 'products' => [
                     'name' => 'Product Name',
@@ -272,15 +283,15 @@ return [
                     'description' => 'Product Description',
                     'product_categories' => 'Product Categories',
                 ],
-                
+
                 'product-categories' => [
                     'name' => 'Category Name',
                     'code' => 'Category Code',
                     'description' => 'Category Description',
                     'status' => 'Category Status',
                     'display_status' => 'Display Status',
-                ],                
-                
+                ],
+
             ],
         ],
 

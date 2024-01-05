@@ -6,6 +6,8 @@ use App\Models\Auth\PasswordHistory;
 use App\Models\Auth\Permission;
 use App\Models\Auth\Role;
 use App\Models\Auth\SocialAccount;
+use App\Models\jobTitle;
+use App\Models\Position;
 
 trait UserRelationships
 {
@@ -52,5 +54,22 @@ trait UserRelationships
     public function permissions()
     {
         return $this->belongsToMany(Permission::class);
+    }
+
+    public function jobTitle()
+    {
+        return $this->belongsTo(JobTitle::class, 'job_title_id');
+    }
+
+    public function position()
+    {
+        return $this->hasOneThrough(
+            Position::class,
+            JobTitle::class,
+            'id',
+            'id',
+            'job_title_id',
+            'position_id'
+        );
     }
 }
