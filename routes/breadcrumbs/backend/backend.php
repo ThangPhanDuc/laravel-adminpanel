@@ -7,6 +7,7 @@ Breadcrumbs::for('admin.dashboard', function ($trail) {
 require __DIR__.'/auth.php';
 require __DIR__.'/log-viewer.php';
 require __DIR__.'/blogs/blog.php';
+require __DIR__.'/leaves/leave.php';
 require __DIR__.'/products/product.php';
 require __DIR__.'/employees/employee.php';
 require __DIR__.'/tickets/ticket.php';

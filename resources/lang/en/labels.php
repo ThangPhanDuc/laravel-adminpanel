@@ -214,6 +214,30 @@ return [
                 ],
             ],
 
+            'leaves' => [
+                'all' => 'All Leaves',
+                'active' => 'Leave List',
+                'create' => 'Create Leave',
+                'deactivated' => 'Deactivated Leaves',
+                'deleted' => 'Deleted Leave',
+                'edit' => 'Edit Leave',
+                'management' => 'Leave Management',
+            
+                'table' => [
+                    'created' => 'Created',
+                    'id' => 'ID',
+                    'last_updated' => 'Last Updated',
+                    'leave_type' => 'Leave Type',
+                    'start_date' => 'Start Date',
+                    'end_date' => 'End Date',
+                    'reason' => 'Reason',
+                    'status' => 'Status',
+                    'user' => 'User',
+                    'created_at' => 'Created At',
+                    'total' => 'leave total|leaves total',
+                ],
+            ],    
+
             'employees' => [
                 'all' => 'All Employees',
                 'active' => 'Active Employees',

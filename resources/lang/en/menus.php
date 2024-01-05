@@ -91,6 +91,17 @@ return [
                 'view' => 'View Blog Tag',
             ],
 
+            'leaves' => [
+                'all' => 'All Leaves',
+                'active' => 'Active Leaves',
+                'create' => 'Create Leave',
+                'deactivated' => 'Deactivated Leaves',
+                'deleted' => 'Deleted Leaves',
+                'edit' => 'Edit Leave',
+                'main' => 'Leaves',
+                'view' => 'View Leave',
+            ],
+
             'employees' => [
                 'all' => 'All Employees',
                 'active' => 'Active Employees',
@@ -101,7 +112,7 @@ return [
                 'main' => 'Employees',
                 'view' => 'View Employee',
             ],
-            
+
 
             // products
             'products' => [
@@ -114,7 +125,7 @@ return [
                 'main' => 'Products',
                 'view' => 'View Product',
             ],
-            
+
             'product-categories' => [
                 'all' => 'All Product Categories',
                 'active' => 'Active Product Categories',
@@ -125,7 +136,7 @@ return [
                 'main' => 'Product Categories',
                 'view' => 'View Product Category',
             ],
-            
+
             'tickets' => [
                 'all' => 'All Tickets',
                 'active' => 'Active Tickets',
@@ -173,6 +184,8 @@ return [
             'system' => 'System',
             'blogs' => 'Blog Management',
             'employees' => 'Employee Management',
+            'leave-application' => 'Leave Application',
+            'HRAdministration' => 'Human Resources Administration',
             'products' => 'Product Management',
             'tickets' => 'TIcket Management',
             'pages' => 'Pages Management',

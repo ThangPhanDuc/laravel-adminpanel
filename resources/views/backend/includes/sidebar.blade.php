@@ -208,6 +208,25 @@
                 </li>
 
                 <li class="nav-item nav-dropdown {{
+                    active_class(Route::is('admin/leaves'), 'open')
+                }}">
+                    <a class="nav-link nav-dropdown-toggle {{
+                            active_class(Route::is('admin/leaves*'))
+                        }}" href="#">
+                        <i class="nav-icon fas fa-rss"></i> @lang('menus.backend.sidebar.HRAdministration')
+                    </a>
+
+                    <ul class="nav-dropdown-items">
+                        <li class="nav-item">
+                            <a class="nav-link {{ active_class(Route::is('admin/leaves')) }}" 
+                                href="{{ route('admin.leaves.index') }}">
+                                @lang('menus.backend.sidebar.leave-application')
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+
+                <li class="nav-item nav-dropdown {{
                     active_class(Route::is('admin/log-viewer*'), 'open')
                 }}">
                         <a class="nav-link nav-dropdown-toggle {{

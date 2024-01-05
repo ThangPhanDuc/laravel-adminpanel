@@ -7,6 +7,8 @@
 @endsection
 
 @section('content')
+    @include('backend.products.filter')
+
     <div class="card">
         <div class="card-body">
             <div class="row">
@@ -51,12 +53,9 @@
 @endsection
 
 @section('pagescript')
-<script>
-    FTX.Utils.documentReady(function() {
-        FTX.Products.list.init();
-    });
-</script>
+    <script>
+        FTX.Utils.documentReady(function() {
+            FTX.Products.list.init();
+        });
+    </script>
 @stop
-
-
-
