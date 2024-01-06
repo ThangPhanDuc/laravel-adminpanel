@@ -61,6 +61,6 @@ class LeavesController extends Controller
     {
         $this->repository->update($leave, $request->action);
 
-        return new RedirectResponse(route('admin.leaves.index'), ['flash_success' => __('alerts.backend.blogs.updated')]);
+        return new RedirectResponse(route('admin.leaves.index'), ['flash_success' => __('alerts.backend.leaves.updated')]);
     }
 }
