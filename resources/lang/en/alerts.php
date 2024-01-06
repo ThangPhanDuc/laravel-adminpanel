@@ -60,6 +60,12 @@ return [
             'deleted' => 'The blog tag was successfully deleted.',
         ],
 
+        'leaves' => [
+            'created' => 'The leave was successfully created.',
+            'updated' => 'The leave was successfully updated.',
+            'deleted' => 'The leave was successfully deleted.',
+        ],
+
         'products' => [
             'created' => 'The product was successfully created.',
             'updated' => 'The product was successfully updated.',

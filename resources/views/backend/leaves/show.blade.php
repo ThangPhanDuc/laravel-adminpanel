@@ -67,21 +67,21 @@
     <div class="row mt-4 float-right">
         <div class="col d-flex">
             @if ($isHRManager)
-                @if ($leave->manager_confirmation)
+                @if ($leave->hr_confirmation)
                     <button class="btn btn-info m-2" disabled>HR has confirmed</button>
                 @else
                     <form action="{{ route('admin.leaves.process', ['leave' => $leave, 'action' => 'approve']) }}"
                         method="POST">
                         @csrf
                         @method('PATCH')
-                        <button type="submit" class="btn btn-success m-2">Approve</button>
+                        <button type="submit" class="btn btn-success m-2">Approve as HR Manager</button>
                     </form>
 
                     <form action="{{ route('admin.leaves.process', ['leave' => $leave, 'action' => 'reject']) }}"
                         method="POST">
                         @csrf
                         @method('PATCH')
-                        <button type="submit" class="btn btn-danger m-2">Reject</button>
+                        <button type="submit" class="btn btn-danger m-2">Reject as HR Manager</button>
                     </form>
                 @endif
             @elseif($isDepartmentHead)

@@ -108,7 +108,7 @@ class LeavesRepository extends BaseRepository
                 }
             }
 
-            if ($leave->manager_confirmation && $leave->employee_confirmation) {
+            if ($leave->manager_confirmation && $leave->hr_confirmation) {
                 $leave->update(['status' => 'approved']);
             }
 
